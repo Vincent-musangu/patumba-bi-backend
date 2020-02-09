@@ -23,7 +23,7 @@ export class ZamtelPatumbaService {
       endDate: string,
    ): Promise<SecEntityRepository> {
       const secQuery = await this.zamtelSecEntityRepository.query(
-         `select DATE(created_at) as Date,4/7.25*total_liabilites as "fundManagementFees",
+         `select CONVERT(created_at,CHAR) as date,4/7.25*total_liabilites as "fundManagementFees",
          1/7.25*total_liabilites as "custodianFees",1.25/7.25*total_liabilites as "secLevyFees",
          1/7.25*total_liabilites as "trustFees" FROM fund_end_of_day WHERE DATE(created_at)
          >= '${startDate}' AND DATE(created_at) <= '${endDate}';`,

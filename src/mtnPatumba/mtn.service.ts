@@ -21,9 +21,9 @@ export class MtnPatumbaService {
       endDate: string,
    ): Promise<SecEntityRepository> {
       const secQuery = await this.airtelSecEntityRepository.query(
-         `select DATE(created_at) as Date,4/7.25*total_liabilites as "Fund Management Fees",
-         1/7.25*total_liabilites as "Custodian Fees",1.25/7.25*total_liabilites as "Sec Levy Fees",
-         1/7.25*total_liabilites as "Trust Fees" FROM fund_end_of_day WHERE DATE(created_at)
+         `select CONVERT(created_at,CHAR) as date,4/7.25*total_liabilites as "fundManagementFees",
+         1/7.25*total_liabilites as "custodianFees",1.25/7.25*total_liabilites as "secLevyFees",
+         1/7.25*total_liabilites as "trustFees" FROM fund_end_of_day WHERE DATE(created_at)
          >= '${startDate}' AND DATE(created_at) <= '${endDate}';`,
       );
       // tslint:disable-next-line: no-console

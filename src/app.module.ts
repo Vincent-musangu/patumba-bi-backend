@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-import { ZamtelPatumbaModule } from "./zamtelPatumba/zamtel.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import {
    SecEntity,
@@ -7,11 +6,13 @@ import {
    SaccoEntity,
 } from "./entity/patumba.entity";
 import { AirtelPatumbaModule } from "./airtelPatumba/airtel.module";
-
+import { ZamtelPatumbaModule } from "./zamtelPatumba/zamtel.module";
+import { MtnPatumbaModule } from "./mtnPatumba/mtn.module";
 @Module({
    imports: [
       AirtelPatumbaModule,
       ZamtelPatumbaModule,
+      MtnPatumbaModule,
       TypeOrmModule.forRoot({
          type: "mysql",
          host: "localhost",

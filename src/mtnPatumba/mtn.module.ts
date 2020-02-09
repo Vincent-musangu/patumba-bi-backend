@@ -19,4 +19,4 @@ import {
    controllers: [MtnPatumbaController],
    providers: [MtnPatumbaService],
 })
-export class AirtelPatumbaModule {}
+export class MtnPatumbaModule {}
