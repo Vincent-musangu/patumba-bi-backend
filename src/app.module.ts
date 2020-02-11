@@ -8,6 +8,8 @@ import {
 import { AirtelPatumbaModule } from "./airtelPatumba/airtel.module";
 import { ZamtelPatumbaModule } from "./zamtelPatumba/zamtel.module";
 import { MtnPatumbaModule } from "./mtnPatumba/mtn.module";
+import { AuthModule } from "./auth/auth.module";
+import { UserEntity } from "./auth/user.entity";
 @Module({
    imports: [
       AirtelPatumbaModule,
@@ -19,9 +21,10 @@ import { MtnPatumbaModule } from "./mtnPatumba/mtn.module";
          port: 3306,
          username: "root",
          database: "patumba_reports",
-         entities: [SecEntity, UnitPriceEntity, SaccoEntity],
+         entities: [SecEntity, UnitPriceEntity, SaccoEntity, UserEntity],
          synchronize: false,
       }),
+      AuthModule,
    ],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from "typeorm";
 @Entity()
-export class SecEntity {
+export class SecEntity extends BaseEntity {
    @PrimaryGeneratedColumn()
    id: number;
    @Column()
@@ -30,7 +30,7 @@ export class SecEntity {
 
 // tslint:disable-next-line: max-classes-per-file
 @Entity()
-export class UnitPriceEntity {
+export class UnitPriceEntity extends BaseEntity {
    @PrimaryGeneratedColumn()
    id: number;
    @Column()
@@ -44,7 +44,7 @@ export class UnitPriceEntity {
 }
 // tslint:disable-next-line: max-classes-per-file
 @Entity()
-export class SaccoEntity {
+export class SaccoEntity extends BaseEntity {
    @PrimaryGeneratedColumn()
    id: number;
    @Column()

@@ -1,38 +1,42 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Param, Post, Body } from "@nestjs/common";
 import { ZamtelPatumbaService } from "./zamtel.service";
 @Controller("zamtel")
 export class ZamtelPatumbaController {
    constructor(private zamtelPatumbaService: ZamtelPatumbaService) {}
+
    // geing sec reports
-   @Get("/sec")
-   secFees(firstDate: string, secondDate: string) {
-      firstDate = "2020-02-01 00:00:00";
-      secondDate = "2020-02-10 00:00:00";
-      return this.zamtelPatumbaService.getSecReport(firstDate, secondDate);
+
+   // geing sec reports
+   @Get("/sec/:startDate/:endDate")
+   secFees(
+      @Param("startDate") startDate: string,
+      @Param("endDate") endDate: string,
+   ) {
+      return this.zamtelPatumbaService.getSecReport(startDate, endDate);
    }
    // geting monthlyunit reports
-   @Get("/monthly-units")
-   monthlyUnits(firstDate: string, secondDate: string) {
-      firstDate = "2020-02-01 00:00:00";
-      secondDate = "2020-02-10 00:00:00";
+   @Get("/monthly-units/:startDate/:endDate")
+   monthlyUnits(
+      @Param("startDate") startDate: string,
+      @Param("endDate") endDate: string,
+   ) {
       return this.zamtelPatumbaService.getMonthlyUnitsReport(
-         firstDate,
-         secondDate,
+         startDate,
+         endDate,
       );
    }
-   @Get("/units-price")
-   unitPrice(firstDate: string, secondDate: string) {
-      firstDate = "2020-02-01 00:00:00";
-      secondDate = "2020-02-10 00:00:00";
-      return this.zamtelPatumbaService.getUnitPriceReport(
-         firstDate,
-         secondDate,
-      );
+   @Get("/units-price/:startDate/:endDate")
+   unitPrice(
+      @Param("startDate") startDate: string,
+      @Param("endDate") endDate: string,
+   ) {
+      return this.zamtelPatumbaService.getUnitPriceReport(startDate, endDate);
    }
-   @Get("/sacco")
-   sacco(firstDate: string, secondDate: string) {
-      firstDate = "2020-01-01 00:00:00";
-      secondDate = "2020-02-18 00:00:00";
-      return this.zamtelPatumbaService.getsaccoReport(firstDate, secondDate);
+   @Get("/sacco/:startDate/:endDate")
+   sacco(
+      @Param("startDate") startDate: string,
+      @Param("endDate") endDate: string,
+   ) {
+      return this.zamtelPatumbaService.getsaccoReport(startDate, endDate);
    }
 }

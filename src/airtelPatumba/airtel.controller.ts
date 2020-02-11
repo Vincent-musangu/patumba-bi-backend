@@ -1,32 +1,35 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Post, Body, Param } from "@nestjs/common";
 import { AirtelPatumbaService } from "./airtel.service";
 @Controller("airtel")
 export class AirtelPatumbaController {
-   constructor(private airtelpatumbaService: AirtelPatumbaService) {}
+   constructor(private airtelPatumbaService: AirtelPatumbaService) {}
+
    // geing sec reports
-   @Get("/sec")
-   secFees(firstDate: string, secondDate: string) {
-      firstDate = "2020-02-01 00:00:00";
-      secondDate = "2020-02-10 00:00:00";
-      return this.airtelpatumbaService.getSecReport(firstDate, secondDate);
+
+   // geing sec reports
+   @Get("/sec/:startDate/:endDate")
+   secFees(
+      @Param("startDate") startDate: string,
+      @Param("endDate") endDate: string,
+   ) {
+      return this.airtelPatumbaService.getSecReport(startDate, endDate);
    }
    // geting monthlyunit reports
-   @Get("/monthly-units")
-   monthlyUnits(firstDate: string, secondDate: string) {
-      firstDate = "2020-02-01 00:00:00";
-      secondDate = "2020-02-10 00:00:00";
-      return this.airtelpatumbaService.getMonthlyUnitsReport(
-         firstDate,
-         secondDate,
+   @Get("/monthly-units/:startDate/:endDate")
+   monthlyUnits(
+      @Param("startDate") startDate: string,
+      @Param("endDate") endDate: string,
+   ) {
+      return this.airtelPatumbaService.getMonthlyUnitsReport(
+         startDate,
+         endDate,
       );
    }
-   @Get("/units-price")
-   unitPrice(firstDate: string, secondDate: string) {
-      firstDate = "2020-02-01 00:00:00";
-      secondDate = "2020-02-10 00:00:00";
-      return this.airtelpatumbaService.getUnitPriceReport(
-         firstDate,
-         secondDate,
-      );
+   @Get("/units-price/:startDate/:endDate")
+   unitPrice(
+      @Param("startDate") startDate: string,
+      @Param("endDate") endDate: string,
+   ) {
+      return this.airtelPatumbaService.getUnitPriceReport(startDate, endDate);
    }
 }
